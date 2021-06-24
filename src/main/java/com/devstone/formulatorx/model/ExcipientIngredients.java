@@ -14,7 +14,7 @@ public class ExcipientIngredients {
 
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name="id")
+    @JoinColumn(name="man_id")
     private Manufacturer manufacturer;
 
     public ExcipientIngredients() {

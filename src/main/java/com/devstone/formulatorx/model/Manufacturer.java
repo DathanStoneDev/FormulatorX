@@ -9,7 +9,7 @@ public class Manufacturer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
-
+    //need to make this field unique in the database
     @Column(name="name")
     private String name;
 
