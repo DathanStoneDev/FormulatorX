@@ -3,7 +3,7 @@ package com.devstone.formulatorx.model;
 import javax.persistence.*;
 
 @Entity
-public class ExcipientIngredients {
+public class ExcipientIngredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
@@ -17,11 +17,11 @@ public class ExcipientIngredients {
     @JoinColumn(name="man_id")
     private Manufacturer manufacturer;
 
-    public ExcipientIngredients() {
+    public ExcipientIngredient() {
 
     }
 
-    public ExcipientIngredients(String name) {
+    public ExcipientIngredient(String name) {
         this.name = name;
     }
 

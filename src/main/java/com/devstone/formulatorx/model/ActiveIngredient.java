@@ -3,7 +3,7 @@ package com.devstone.formulatorx.model;
 import javax.persistence.*;
 
 @Entity
-public class ActiveIngredients{
+public class ActiveIngredient {
     //auto generated id in mySQL database
     @Id //need to make custom numbering starting with RM
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +26,7 @@ public class ActiveIngredients{
     @JoinColumn(name="man_id")
     private Manufacturer manufacturer;
 
-    public ActiveIngredients() {
+    public ActiveIngredient() {
 
     }
 
