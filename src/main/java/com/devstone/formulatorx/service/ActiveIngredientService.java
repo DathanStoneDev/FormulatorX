@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface ActiveIngredientService {
 
-    public List<ActiveIngredient> findAll();
-    public ActiveIngredient findById(int theId);
-    public void save(ActiveIngredient theActiveIngredient);
-    public void deleteById(int theId);
+    List<ActiveIngredient> findAll();
+    ActiveIngredient findById(int theId);
+    void save(ActiveIngredient theActiveIngredient);
+    void deleteById(int theId);
 }

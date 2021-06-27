@@ -29,6 +29,12 @@ public class ActiveIngredient {
     public ActiveIngredient() {
 
     }
+    //need to go into mySql Database and change type for this
+    public ActiveIngredient(String name, String active, double potency) {
+        this.name = name;
+        this.active = active;
+        this.potency = potency;
+    }
 
     public String getName() {
         return name;
