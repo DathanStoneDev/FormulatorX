@@ -23,7 +23,7 @@ public class ActiveIngredient {
     if ingredient is deleted, we do not want to delete manufacturer*/
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name="man_id")
+    @JoinColumn(name="manufacturer")
     private Manufacturer manufacturer;
 
     public ActiveIngredient() {

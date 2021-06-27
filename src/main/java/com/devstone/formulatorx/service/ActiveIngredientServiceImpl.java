@@ -1,30 +1,34 @@
 package com.devstone.formulatorx.service;
 
-import com.devstone.formulatorx.dao.ActiveIngredientsRepository;
+import com.devstone.formulatorx.dao.ActiveIngredientDAO;
+import com.devstone.formulatorx.dao.ActiveIngredientDAOImpl;
 import com.devstone.formulatorx.model.ActiveIngredient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ActiveIngredientServiceImpl implements ActiveIngredientService {
 
-    private ActiveIngredientsRepository activeIngredientsRepository;
+    private final ActiveIngredientDAO activeIngredientDAO;
 
-    @Autowired
-    public ActiveIngredientServiceImpl(ActiveIngredientsRepository theActiveIngredientRepository) {
-        activeIngredientsRepository = theActiveIngredientRepository;
+    public ActiveIngredientServiceImpl(ActiveIngredientDAO activeIngredientDAO) {
+        this.activeIngredientDAO = activeIngredientDAO;
     }
-    //no need to list transactional as it is already added out of the box by JPA repo
+
     @Override
+    @Transactional
     public List<ActiveIngredient> findAll() {
-        return activeIngredientsRepository.findAll();
+        return activeIngredientDAO.findAll();
     }
 
     @Override
+    @Transactional
     public ActiveIngredient findById(int theId) {
-        Optional<ActiveIngredient> result = activeIngredientsRepository.findById(theId);
+        Optional<ActiveIngredient> result = Optional.ofNullable(activeIngredientDAO.findById(theId));
 
         ActiveIngredient theActiveIngredient;
         if(result.isPresent()) {
@@ -37,12 +41,14 @@ public class ActiveIngredientServiceImpl implements ActiveIngredientService {
     }
 
     @Override
+    @Transactional
     public void save(ActiveIngredient theActiveIngredient) {
-        activeIngredientsRepository.save(theActiveIngredient);
+        activeIngredientDAO.save(theActiveIngredient);
     }
 
     @Override
+    @Transactional
     public void deleteById(int theId) {
-        activeIngredientsRepository.deleteById(theId);
+        activeIngredientDAO.deleteById(theId);
     }
 }

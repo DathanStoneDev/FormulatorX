@@ -6,8 +6,7 @@ import com.devstone.formulatorx.service.ActiveIngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +26,26 @@ public class ActiveIngredientController {
         model.addAttribute("active", theActive);
         //return the thymeleaf page with this path.
         return "list-actives";
+    }
+
+    @GetMapping("/addForm")
+    public String addForm(Model model){
+        //to add a new active ingredient, need to create a new object
+        ActiveIngredient newIngredient = new ActiveIngredient();
+
+        //add to the model
+        model.addAttribute("activeIngredient", newIngredient);
+
+        return "add-active-form";
+    }
+
+    @PostMapping("/save")
+    public String saveActives(@ModelAttribute("activeIngredient") ActiveIngredient newIngredient) {
+
+        // save the employee
+        activeIngredientService.save(newIngredient);
+
+        // use a redirect to prevent duplicate submissions
+        return "redirect:/actives/list";
     }
 }
