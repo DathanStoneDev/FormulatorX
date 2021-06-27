@@ -18,10 +18,11 @@
         <p class = "h4 mb-4">Save Active Ingredient</p>
 
         <form action="#" th:action="@{/actives/save}"
-          th:object="${activeIngredient}" method="POST">
+          th:object="${activeIngredient}"  method="POST">
 
-        <!-- Add hidden form field to handle update -->
+
             <input type="hidden" th:field="*{id}"/>
+            <input type="hidden" th:field="${manufacturer.manId}"/>
 
             <input type="text" th:field="*{name}"
                class="form-control mb-4 col-4" placeholder="Raw Material Name">
@@ -29,9 +30,16 @@
                class="form-control mb-4 col-4" placeholder="Active Component Name">
             <input type="text" th:field="*{potency}"
                    class="form-control mb-4 col-4" placeholder="Potency">
-            <input type="text" th:field="*{manufacturer}"
-                   class="form-control mb-4 col-4" placeholder="Manufacturer">
-
+            <input type="text" th:field="*{manufacturer.manName}"
+                   class="form-control mb-4 col-4" placeholder="Manufacturer Name">
+            <input type="text" th:field="*{manufacturer.country}"
+                   class="form-control mb-4 col-4" placeholder="Manufacturer Country">
+            <input type="text" th:field="*{manufacturer.city}"
+                   class="form-control mb-4 col-4" placeholder="Manufacturer City">
+            <input type="text" th:field="*{manufacturer.email}"
+                   class="form-control mb-4 col-4" placeholder="Manufacturer Email">
+            <input type="text" th:field="*{manufacturer.phone}"
+                   class="form-control mb-4 col-4" placeholder="Manufacturer Phone">
             <button type="submit" class="btn btn-info col-2">Save</button>
         </form>
         <hr>

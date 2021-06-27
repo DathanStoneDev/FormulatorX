@@ -2,10 +2,11 @@ package com.devstone.formulatorx.model;
 
 import javax.persistence.*;
 
+
 @Entity
 public class ActiveIngredient {
     //auto generated id in mySQL database
-    @Id //need to make custom numbering starting with RM
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private int id;
@@ -19,9 +20,7 @@ public class ActiveIngredient {
     @Column(name="potency")
     private double potency;
 
-    /*each ingredient is a unique RM and can have one manufacturer
-    if ingredient is deleted, we do not want to delete manufacturer*/
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name="manufacturer")
     private Manufacturer manufacturer;
@@ -64,11 +63,26 @@ public class ActiveIngredient {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Manufacturer getManufacturer() {
         return manufacturer;
     }
 
     public void setManufacturer(Manufacturer manufacturer) {
         this.manufacturer = manufacturer;
+    }
+
+    @Override
+    public String toString() {
+        return "ActiveIngredient{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", active='" + active + '\'' +
+                ", potency=" + potency +
+                ", manufacturer='" + manufacturer + '\'' +
+                '}';
     }
 }

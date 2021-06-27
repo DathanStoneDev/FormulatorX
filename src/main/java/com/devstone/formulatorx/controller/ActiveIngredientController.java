@@ -2,7 +2,9 @@ package com.devstone.formulatorx.controller;
 
 
 import com.devstone.formulatorx.model.ActiveIngredient;
+import com.devstone.formulatorx.model.Manufacturer;
 import com.devstone.formulatorx.service.ActiveIngredientService;
+import com.devstone.formulatorx.service.ManufacturerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,9 +16,11 @@ import java.util.List;
 @RequestMapping("/actives")
 public class ActiveIngredientController {
 
-    //injecting service
-    @Autowired
-    private ActiveIngredientService activeIngredientService;
+   @Autowired
+   private ActiveIngredientService activeIngredientService;
+
+   @Autowired
+   private ManufacturerService manufacturerService;
 
     //getting a full list of active ingredients using the service
     @GetMapping("/list")
@@ -31,19 +35,22 @@ public class ActiveIngredientController {
     @GetMapping("/addForm")
     public String addForm(Model model){
         //to add a new active ingredient, need to create a new object
-        ActiveIngredient newIngredient = new ActiveIngredient();
+        ActiveIngredient activeIngredient = new ActiveIngredient();
+        Manufacturer manufacturer = new Manufacturer();
 
         //add to the model
-        model.addAttribute("activeIngredient", newIngredient);
+        model.addAttribute("activeIngredient", activeIngredient);
+        model.addAttribute("manufacturer", manufacturer);
 
         return "add-active-form";
     }
 
     @PostMapping("/save")
-    public String saveActives(@ModelAttribute("activeIngredient") ActiveIngredient newIngredient) {
+    public String saveActives(@ModelAttribute("activeIngredient") ActiveIngredient activeIngredient, @ModelAttribute("manufacturer") Manufacturer manufacturer) {
 
-        // save the employee
-        activeIngredientService.save(newIngredient);
+        // save the Ingredient
+        activeIngredientService.saveOrUpdate(activeIngredient);
+        manufacturerService.saveOrUpdate(manufacturer);
 
         // use a redirect to prevent duplicate submissions
         return "redirect:/actives/list";

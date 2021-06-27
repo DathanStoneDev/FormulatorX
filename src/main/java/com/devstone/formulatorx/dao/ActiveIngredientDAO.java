@@ -1,7 +1,6 @@
 package com.devstone.formulatorx.dao;
 
 import com.devstone.formulatorx.model.ActiveIngredient;
-
 import java.util.List;
 
 public interface ActiveIngredientDAO {

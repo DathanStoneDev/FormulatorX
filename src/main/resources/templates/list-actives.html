@@ -21,7 +21,6 @@
         <table class="table table-bordered table-striped">
             <thead class="thead-dark">
             <tr>
-                <th>Raw Material ID</th>
                 <th>Raw Material Name</th>
                 <th>Active Ingredient</th>
                 <th>Potency</th>
@@ -34,7 +33,7 @@
                     <td th:text="${tempActive.name}"></td>
                     <td th:text="${tempActive.active}"></td>
                     <td th:text="${tempActive.potency}"></td>
-                    <td th:text="${tempActive.manufacturer}"></td>
+                    <td th:text="${tempActive.manufacturer.manName}"></td>
                 </tr>
             </tbody>
         </table>

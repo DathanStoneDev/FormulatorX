@@ -1,12 +1,9 @@
 package com.devstone.formulatorx.service;
 
 import com.devstone.formulatorx.dao.ActiveIngredientDAO;
-import com.devstone.formulatorx.dao.ActiveIngredientDAOImpl;
 import com.devstone.formulatorx.model.ActiveIngredient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -42,7 +39,7 @@ public class ActiveIngredientServiceImpl implements ActiveIngredientService {
 
     @Override
     @Transactional
-    public void save(ActiveIngredient theActiveIngredient) {
+    public void saveOrUpdate(ActiveIngredient theActiveIngredient) {
         activeIngredientDAO.save(theActiveIngredient);
     }
 
