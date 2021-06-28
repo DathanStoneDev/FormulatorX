@@ -8,6 +8,6 @@ public interface ActiveIngredientService {
 
     List<ActiveIngredient> findAll();
     ActiveIngredient findById(int theId);
-    void saveOrUpdate(ActiveIngredient theActiveIngredient);
+    void save(ActiveIngredient theActiveIngredient);
     void deleteById(int theId);
 }

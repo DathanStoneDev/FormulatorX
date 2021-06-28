@@ -39,7 +39,7 @@ public class ActiveIngredientServiceImpl implements ActiveIngredientService {
 
     @Override
     @Transactional
-    public void saveOrUpdate(ActiveIngredient theActiveIngredient) {
+    public void save(ActiveIngredient theActiveIngredient) {
         activeIngredientDAO.save(theActiveIngredient);
     }
 

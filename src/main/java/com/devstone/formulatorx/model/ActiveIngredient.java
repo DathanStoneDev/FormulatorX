@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 public class ActiveIngredient {
-    //auto generated id in mySQL database
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
@@ -20,8 +20,7 @@ public class ActiveIngredient {
     @Column(name="potency")
     private double potency;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.DETACH, CascadeType.REFRESH})
+    @ManyToOne
     @JoinColumn(name="manufacturer")
     private Manufacturer manufacturer;
 

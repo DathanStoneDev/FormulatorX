@@ -1,51 +1,50 @@
 package com.devstone.formulatorx.dao;
 
-import com.devstone.formulatorx.model.ActiveIngredient;
+import com.devstone.formulatorx.model.ExcipientIngredient;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import javax.persistence.EntityManager;
 import java.util.List;
 
 @Repository
-public class ActiveIngredientDAOImpl implements ActiveIngredientDAO{
+public class ExcipientIngredientDAOImpl implements ExcipientIngredientDAO{
 
     @Autowired
     private EntityManager entityManager;
 
     @Override
-    public List<ActiveIngredient> findAll() {
+    public List<ExcipientIngredient> findAll() {
         //get the current hibernate session
         Session currentSession = entityManager.unwrap(Session.class);
 
         //create a query
-        Query<ActiveIngredient> theQuery =
-                currentSession.createQuery("from ActiveIngredient ", ActiveIngredient.class);
+        Query<ExcipientIngredient> theQuery =
+                currentSession.createQuery("from ExcipientIngredient", ExcipientIngredient.class);
         //execute the query and grab the result list
-        List<ActiveIngredient> ingredients = theQuery.getResultList();
+        List<ExcipientIngredient> excIngredients = theQuery.getResultList();
         //return results
-        return ingredients;
+        return excIngredients;
     }
 
     @Override
-    public ActiveIngredient findById(int theId) {
+    public ExcipientIngredient findById(int theId) {
 
         //get the current session
         Session currentSession = entityManager.unwrap(Session.class);
         //get the employee
-        ActiveIngredient ingredients = currentSession.get(ActiveIngredient.class, theId);
+        ExcipientIngredient excIngredients = currentSession.get(ExcipientIngredient.class, theId);
         //return employee
-        return ingredients;
+        return excIngredients;
     }
 
     @Override
-    public void save(ActiveIngredient activeIngredient) {
+    public void saveOrUpdate(ExcipientIngredient excipientIngredient) {
 
         Session currentSession = entityManager.unwrap(Session.class);
 
-        currentSession.save(activeIngredient);
+        currentSession.saveOrUpdate(excipientIngredient);
     }
 
     @Override
@@ -54,9 +53,9 @@ public class ActiveIngredientDAOImpl implements ActiveIngredientDAO{
         Session currentSession = entityManager.unwrap(Session.class);
 
         Query theQuery =
-                currentSession.createQuery("delete from ActiveIngredient where id=:activeId");
+                currentSession.createQuery("delete from ExcipientIngredient where id=:excId");
 
-        theQuery.setParameter("activeId", theId);
+        theQuery.setParameter("excId", theId);
 
         theQuery.executeUpdate();
     }

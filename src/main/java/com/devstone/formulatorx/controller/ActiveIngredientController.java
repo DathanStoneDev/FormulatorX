@@ -23,7 +23,7 @@ public class ActiveIngredientController {
    private ManufacturerService manufacturerService;
 
     //getting a full list of active ingredients using the service
-    @GetMapping("/list")
+    @GetMapping("/listAct")
     public String listActives(Model model) {
         List<ActiveIngredient> theActive = activeIngredientService.findAll();
         //add list to the model.
@@ -32,7 +32,7 @@ public class ActiveIngredientController {
         return "list-actives";
     }
 
-    @GetMapping("/addForm")
+    @GetMapping("/addActiveForm")
     public String addForm(Model model){
         //to add a new active ingredient, need to create a new object
         ActiveIngredient activeIngredient = new ActiveIngredient();
@@ -45,14 +45,35 @@ public class ActiveIngredientController {
         return "add-active-form";
     }
 
-    @PostMapping("/save")
+    @PostMapping("/saveAct")
     public String saveActives(@ModelAttribute("activeIngredient") ActiveIngredient activeIngredient, @ModelAttribute("manufacturer") Manufacturer manufacturer) {
 
         // save the Ingredient
-        activeIngredientService.saveOrUpdate(activeIngredient);
-        manufacturerService.saveOrUpdate(manufacturer);
+        activeIngredientService.save(activeIngredient);
+        manufacturerService.save(manufacturer);
 
         // use a redirect to prevent duplicate submissions
-        return "redirect:/actives/list";
+        return "redirect:/actives/listAct";
+    }
+
+    @GetMapping("/showFormForUpdate")
+    public String showFormForUpdate(@RequestParam("activeId") int theId,
+                                    Model theModel) {
+        //get employee from service
+        ActiveIngredient activeIngredient = activeIngredientService.findById(theId);
+        //set employee as attribute
+        theModel.addAttribute("activeIngredient", activeIngredient);
+        //send over to form
+
+        return "add-active-form";
+    }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("activeId") int theId,
+                         Model theModel) {
+        //delete employee
+        activeIngredientService.deleteById(theId);
+        //redirect
+        return "redirect:/actives/listAct";
     }
 }

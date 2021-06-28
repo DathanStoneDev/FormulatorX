@@ -16,7 +16,7 @@ public class ManufacturerDAOImpl implements ManufacturerDAO{
     private EntityManager entityManager;
 
     @Override
-    public void saveOrUpdate(Manufacturer manufacturer) {
+    public void save(Manufacturer manufacturer) {
 
         Session currentSession = entityManager.unwrap(Session.class);
 

@@ -12,9 +12,9 @@ public class ExcipientIngredient {
     @Column(name="name")
     private String name;
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name="man_id")
+    @JoinColumn(name="manufacturer")
     private Manufacturer manufacturer;
 
     public ExcipientIngredient() {
@@ -43,6 +43,10 @@ public class ExcipientIngredient {
 
     public void setManufacturer(Manufacturer manufacturer) {
         this.manufacturer = manufacturer;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

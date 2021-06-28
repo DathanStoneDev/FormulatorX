@@ -19,8 +19,8 @@ public class ManufacturerServiceImpl implements ManufacturerService {
 
     @Override
     @Transactional
-    public void saveOrUpdate(Manufacturer manufacturer) {
-        manufacturerDAO.saveOrUpdate(manufacturer);
+    public void save(Manufacturer manufacturer) {
+        manufacturerDAO.save(manufacturer);
     }
 
     @Override

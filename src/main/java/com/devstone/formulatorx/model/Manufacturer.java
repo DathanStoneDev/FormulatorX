@@ -1,7 +1,6 @@
 package com.devstone.formulatorx.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,9 +26,13 @@ public class Manufacturer {
     @Column(name="phone")
     private String phone;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE,
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,  CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH}, mappedBy = "manufacturer")
     private List<ActiveIngredient> activeIngredients;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE,
+            CascadeType.DETACH, CascadeType.REFRESH}, mappedBy = "manufacturer")
+    private List<ExcipientIngredient>excipientIngredients;
 
     public Manufacturer() {
 
@@ -99,11 +102,12 @@ public class Manufacturer {
         this.activeIngredients = activeIngredients;
     }
 
-    public void addIngredients(ActiveIngredient activeIngredient) {
-        if(activeIngredients==null) {
-            activeIngredients = new ArrayList<>();
-        }
-        activeIngredients.add(activeIngredient);
+    public List<ExcipientIngredient> getExcipientIngredients() {
+        return excipientIngredients;
+    }
+
+    public void setExcipientIngredients(List<ExcipientIngredient> excipientIngredients) {
+        this.excipientIngredients = excipientIngredients;
     }
 
     @Override
