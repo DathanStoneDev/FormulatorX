@@ -1,5 +1,6 @@
 package com.devstone.formulatorx;
 
+import com.devstone.formulatorx.service.ManufacturerService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
