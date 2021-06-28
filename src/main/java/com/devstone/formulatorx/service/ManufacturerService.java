@@ -21,13 +21,11 @@ public class ManufacturerService {
         return manufacturers;
     }
 
-    public Optional<Manufacturer> getManufacturer(Integer id) {
-        return manufacturerRepository.findById(id);
+    public Optional<Manufacturer> getManufacturer(Integer id) { return manufacturerRepository.findById(id);
     }
 
-    //saves new ingredient and updates manufacturers
-    public void addManufacturer(Manufacturer manufacturer) {
-        manufacturerRepository.save(manufacturer);
+    //saves or updates manufacturer
+    public void addManufacturer(Manufacturer manufacturer) { manufacturerRepository.save(manufacturer);
     }
 
     public void deleteManufacturer(Integer id) {

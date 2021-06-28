@@ -30,8 +30,7 @@ public class Manufacturer {
 
     }
 
-    public Manufacturer(Integer manId, String manName, String country, String city, String email, String phone) {
-        this.manId = manId;
+    public Manufacturer(String manName, String country, String city, String email, String phone) {
         this.manName = manName;
         this.country = country;
         this.city = city;
