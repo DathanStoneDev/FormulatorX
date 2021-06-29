@@ -6,23 +6,27 @@ import javax.persistence.*;
 public class ExcipientIngredient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
-    private int id;
+    @Column(name = "id")
+    private Integer id;
 
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
-
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name="man_id")
-    private Manufacturer manufacturer;
 
     public ExcipientIngredient() {
 
     }
 
-    public ExcipientIngredient(String name) {
+    public ExcipientIngredient(Integer id, String name) {
+        this.id = id;
         this.name = name;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -33,24 +37,11 @@ public class ExcipientIngredient {
         this.name = name;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public Manufacturer getManufacturer() {
-        return manufacturer;
-    }
-
-    public void setManufacturer(Manufacturer manufacturer) {
-        this.manufacturer = manufacturer;
-    }
-
     @Override
     public String toString() {
-        return "ExcipientIngredients{" +
+        return "ExcipientIngredient{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", manufacturer=" + manufacturer +
                 '}';
     }
 }

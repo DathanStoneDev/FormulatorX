@@ -13,28 +13,27 @@
 
 <body>
     <div class="container">
-        <h2>Active Ingredients</h2>
+        <h2>Manufacturers</h2>
         <hr>
-        <a th:href="@{/actives/addForm}" class="btn btn-primary btn-sm mb-3">
-            Add Active Ingredient
-        </a>
         <table class="table table-bordered table-striped">
             <thead class="thead-dark">
             <tr>
-                <th>Raw Material Name</th>
-                <th>Active Ingredient</th>
-                <th>Potency</th>
-                <th>Manufacturer</th>
+                <th>Manufacturer Name</th>
+                <th>Country</th>
+                <th>City</th>
+                <th>Email</th>
+                <th>Phone</th>
             </tr>
             </thead>
 
             <tbody>
-                <tr th:each="tempActive : ${active}">
-                    <td th:text="${tempActive.name}"></td>
-                    <td th:text="${tempActive.active}"></td>
-                    <td th:text="${tempActive.potency}"></td>
-                    <td th:text="${tempActive.manufacturer.manName}"></td>
-                </tr>
+               <tr th:each="tempMan : ${manufacturer}">
+                   <td th:text="${tempMan.manName}"></td>
+                   <td th:text="${tempMan.country}"></td>
+                   <td th:text="${tempMan.city}"></td>
+                   <td th:text="${tempMan.email}"></td>
+                   <td th:text="${tempMan.phone}"></td>
+               </tr>
             </tbody>
         </table>
     </div>

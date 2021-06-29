@@ -1,35 +1,30 @@
 package com.devstone.formulatorx.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Entity
 public class Manufacturer {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id")
-    private int manId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer manId;
 
-    @Column(name="name")
+    @Column(name = "name")
     private String manName;
 
-    @Column(name="country")
+    @Column(name = "country")
     private String country;
 
-    @Column(name="city")
+    @Column(name = "city")
     private String city;
 
-    @Column(name="email")
+    @Column(name = "email")
     private String email;
 
-    @Column(name="phone")
+    @Column(name = "phone")
     private String phone;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.DETACH, CascadeType.REFRESH}, mappedBy = "manufacturer")
-    private List<ActiveIngredient> activeIngredients;
 
     public Manufacturer() {
 
@@ -43,10 +38,18 @@ public class Manufacturer {
         this.phone = phone;
     }
 
+    public Integer getManId() {
+        return manId;
+    }
+
+    public void setManId(Integer manId) {
+        this.manId = manId;
+    }
 
     public String getManName() {
         return manName;
     }
+
     public void setManName(String manName) {
         this.manName = manName;
     }
@@ -83,29 +86,6 @@ public class Manufacturer {
         this.phone = phone;
     }
 
-    public int getManId() {
-        return manId;
-    }
-
-    public void setManId(int manId) {
-        this.manId = manId;
-    }
-
-    public List<ActiveIngredient> getActiveIngredients() {
-        return activeIngredients;
-    }
-
-    public void setActiveIngredients(List<ActiveIngredient> activeIngredients) {
-        this.activeIngredients = activeIngredients;
-    }
-
-    public void addIngredients(ActiveIngredient activeIngredient) {
-        if(activeIngredients==null) {
-            activeIngredients = new ArrayList<>();
-        }
-        activeIngredients.add(activeIngredient);
-    }
-
     @Override
     public String toString() {
         return "Manufacturer{" +
@@ -115,7 +95,6 @@ public class Manufacturer {
                 ", city='" + city + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
-                ", activeIngredients=" + activeIngredients +
                 '}';
     }
 }

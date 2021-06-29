@@ -1,38 +1,43 @@
 package com.devstone.formulatorx.model;
 
+
 import javax.persistence.*;
 
 
 @Entity
 public class ActiveIngredient {
-    //auto generated id in mySQL database
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
-    private int id;
+    @Column(name = "id")
+    private Integer id;
 
-    @Column(name="name")
+    @Column(name = "name")
     private String name;
 
-    @Column(name="active")
+    @Column(name = "active")
     private String active;
 
-    @Column(name="potency")
+    @Column(name = "potency")
     private double potency;
-
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name="manufacturer")
-    private Manufacturer manufacturer;
 
     public ActiveIngredient() {
 
     }
-    //need to go into mySql Database and change type for this
-    public ActiveIngredient(String name, String active, double potency) {
+
+    public ActiveIngredient(Integer id, String name, String active, double potency) {
+        this.id = id;
         this.name = name;
         this.active = active;
         this.potency = potency;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -59,22 +64,6 @@ public class ActiveIngredient {
         this.potency = potency;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Manufacturer getManufacturer() {
-        return manufacturer;
-    }
-
-    public void setManufacturer(Manufacturer manufacturer) {
-        this.manufacturer = manufacturer;
-    }
-
     @Override
     public String toString() {
         return "ActiveIngredient{" +
@@ -82,7 +71,6 @@ public class ActiveIngredient {
                 ", name='" + name + '\'' +
                 ", active='" + active + '\'' +
                 ", potency=" + potency +
-                ", manufacturer='" + manufacturer + '\'' +
                 '}';
     }
 }
